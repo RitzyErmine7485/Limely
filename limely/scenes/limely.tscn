@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://v4jhby2ocjt1"]
+
+[ext_resource type="Script" path="res://scripts/limely.gd" id="1_twhmx"]
+[ext_resource type="Texture2D" uid="uid://ddkuqs8n77hhi" path="res://assets/limely_base.png" id="1_vmw1h"]
+
+[node name="Limely" type="Node2D"]
+script = ExtResource("1_twhmx")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_vmw1h")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

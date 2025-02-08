@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnty36cmrrnkr"]
+
+[ext_resource type="Script" path="res://scripts/game_screen.gd" id="1_037ls"]
+[ext_resource type="PackedScene" uid="uid://v4jhby2ocjt1" path="res://scenes/limely.tscn" id="1_vsm8q"]
+[ext_resource type="PackedScene" uid="uid://cf3g8g6ykodke" path="res://scenes/game_over.tscn" id="2_djiy5"]
+[ext_resource type="PackedScene" uid="uid://de5k4ytwplfmx" path="res://scenes/main_screen.tscn" id="2_pn50r"]
+
+[node name="GameScreen" type="Node2D"]
+script = ExtResource("1_037ls")
+
+[node name="GameOver" parent="." instance=ExtResource("2_djiy5")]
+process_mode = 3
+
+[node name="MainScreen" parent="." instance=ExtResource("2_pn50r")]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Limely" parent="." instance=ExtResource("1_vsm8q")]
+position = Vector2(576, 364)
+scale = Vector2(7, 7)

@@ -1,0 +1,123 @@
+[gd_scene load_steps=13 format=3 uid="uid://de5k4ytwplfmx"]
+
+[ext_resource type="Texture2D" uid="uid://dxmg5ry0ogbvu" path="res://assets/background.png" id="1_13k2b"]
+[ext_resource type="Texture2D" uid="uid://va2y01nuvpgf" path="res://assets/button_rebuild.png" id="1_dq4nd"]
+[ext_resource type="Script" path="res://scripts/main_screen.gd" id="1_l3oho"]
+[ext_resource type="Texture2D" uid="uid://dhklkf71bu53n" path="res://assets/button_rebuild_pressed.png" id="2_ncern"]
+[ext_resource type="Texture2D" uid="uid://cc0nl5lrwbcss" path="res://assets/button_pet.png" id="2_uc7ur"]
+[ext_resource type="Texture2D" uid="uid://ci58qqyw0tf0n" path="res://assets/button_quit.png" id="2_vbxbj"]
+[ext_resource type="Texture2D" uid="uid://dphld504povrc" path="res://assets/button_scold.png" id="3_a24mx"]
+[ext_resource type="Texture2D" uid="uid://dlp6hw8sp031" path="res://assets/button_quit_pressed.png" id="3_p2pxl"]
+[ext_resource type="Texture2D" uid="uid://c3kg5m2wfcnkh" path="res://assets/button_pet_pressed.png" id="4_nherk"]
+[ext_resource type="Texture2D" uid="uid://cljlt34dm1ko0" path="res://assets/button_scold_pressed.png" id="6_x47vo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg3ea"]
+bg_color = Color(0, 0.425533, 0.399106, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_080su"]
+bg_color = Color(2.5028e-06, 0.778335, 0.79711, 1)
+
+[node name="MainScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l3oho")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_13k2b")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Rebuild" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("1_dq4nd")
+texture_pressed = ExtResource("2_ncern")
+stretch_mode = 5
+
+[node name="Pet" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_uc7ur")
+texture_pressed = ExtResource("4_nherk")
+stretch_mode = 5
+
+[node name="Scold" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("3_a24mx")
+texture_pressed = ExtResource("6_x47vo")
+stretch_mode = 5
+
+[node name="Slides" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Weakness" type="ProgressBar" parent="MarginContainer/VBoxContainer/Slides"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_lg3ea")
+theme_override_styles/fill = SubResource("StyleBoxFlat_080su")
+show_percentage = false
+
+[node name="Sadness" type="ProgressBar" parent="MarginContainer/VBoxContainer/Slides"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_lg3ea")
+theme_override_styles/fill = SubResource("StyleBoxFlat_080su")
+show_percentage = false
+
+[node name="Anger" type="ProgressBar" parent="MarginContainer/VBoxContainer/Slides"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_lg3ea")
+theme_override_styles/fill = SubResource("StyleBoxFlat_080su")
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+alignment = 2
+
+[node name="Quit" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+texture_normal = ExtResource("2_vbxbj")
+texture_pressed = ExtResource("3_p2pxl")
+stretch_mode = 0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/Rebuild" to="." method="_on_rebuild_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/Pet" to="." method="_on_pet_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/Scold" to="." method="_on_scold_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
